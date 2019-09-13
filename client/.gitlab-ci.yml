@@ -1,0 +1,16 @@
+client-node-10:
+  image: node:10
+
+  variables:
+    DIR: client
+
+  extends: .job
+
+client-node-12:
+  image: node:12
+
+  variables:
+    DIR: client
+
+  extends: .job
+

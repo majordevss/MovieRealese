@@ -1,0 +1,13 @@
+{
+  "name": "ci-monorepo-server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo [server] build",
+    "test": "mocha src/*.test.js"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "mocha": "7.1.1"
+  }
+}

@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - "10"
+  - "12"
+
+cache:
+  yarn: true
+
+jobs:
+  include:
+    - script:
+        - cd client
+        - yarn install --pure-lockfile
+        - yarn test
+        - yarn build
+    - script:
+        - cd server
+        - yarn install --pure-lockfile
+        - yarn build
+        - yarn test
+
+# script: skip
+
+branches:
+  only:
+  - master
