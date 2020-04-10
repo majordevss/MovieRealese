@@ -1,26 +1,46 @@
 language: node_js
-node_js:
-  - "10"
-  - "12"
 
 cache:
   yarn: true
 
 jobs:
   include:
-    - script:
+    - name: client
+      node_js:
+        - "10"
+      script:
         - cd client
-        - yarn install --pure-lockfile
+        - yarn install --pure-lockfile --prefer-offline
         - yarn test
         - yarn build
-    - script:
+    - name: server
+      node_js:
+        - "10"
+      script:
         - cd server
-        - yarn install --pure-lockfile
+        - yarn install --pure-lockfile --prefer-offline
         - yarn build
         - yarn test
 
-# script: skip
+install: skip
 
 branches:
   only:
-  - master
+    - master
+
+# This approach only works when all modules use the same script commands
+# env:
+#   - DIR=client
+#   - DIR=server
+#
+# script:
+#   - cd $DIR
+#   - yarn install --pure-lockfile --prefer-offline
+#   - yarn build
+#   - yarn test
+#
+# install: skip
+#
+# branches:
+#   only:
+#     - master
