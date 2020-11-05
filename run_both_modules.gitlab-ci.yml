@@ -1,0 +1,34 @@
+# Run CI for both modules instead of a single one
+
+image: node:10
+
+stages:
+  - test
+
+client:
+  stage: test
+  before_script:
+    - cd client
+    - yarn install --pure-lockfile --prefer-offline --cache-folder .yarn
+  script:
+    - yarn test
+    - yarn build
+  cache:
+    key: client
+    paths:
+      - client/.yarn
+      - client/node_modules/
+
+server:
+  stage: test
+  before_script:
+    - cd server
+    - yarn install --pure-lockfile --prefer-offline --cache-folder .yarn
+  script:
+    - yarn test
+    - yarn build
+  cache:
+    key: server
+    paths:
+      - server/.yarn
+      - server/node_modules/
