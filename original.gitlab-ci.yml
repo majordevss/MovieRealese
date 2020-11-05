@@ -1,25 +1,15 @@
+image: node:10
 stages:
   - test
-
-.job:
-  image: node:10
-
+before_script:
+  - yarn install --pure-lockfile --prefer-offline --cache-folder .yarn
+test:
   stage: test
-
-  before_script:
-    - cd $DIR
-    - yarn install --pure-lockfile --prefer-offline --cache-folder .yarn
-
   script:
+    - yarn lint
     - yarn test
     - yarn build
-
-  cache:
-    key: $CI_JOB_NAME
-    paths:
-      - $DIR/.yarn
-      - $DIR/node_modules/
-
-include:
-  - local: '/client/.gitlab-ci.yml'
-  - local: '/server/.gitlab-ci.yml'
+cache:
+  paths:
+    - node_modules/
+    - .yarn
