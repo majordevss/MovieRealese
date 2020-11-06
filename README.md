@@ -9,9 +9,9 @@ Related article https://darekkay.com/blog/gitlab-ci-monorepo-config/
 ## Basic multirepo structure
 
 |- client  
-   |- src  
-   |- package.json  
+     |- src  
+     |- package.json  
 |- server  
-   |- src  
-   |- package.json  
+     |- src  
+     |- package.json  
 |- .gitlab-ci.yml
